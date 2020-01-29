@@ -1,0 +1,64 @@
+@baseurl = http://localhost:7070
+
+GET  http://localhost:7071/api/getevents
+Content-Type: application/json
+
+###
+
+POST   http://localhost:7071/api/createevent
+Content-Type: application/json
+
+{
+  "EventTitle": "Test Event",
+  "EventDescription": " test description",
+  "EventType": "Formal",
+  "EventDate": "2019-12-01 00:00:00.000Z",
+  "EventCost": "12.12"
+}
+
+POST http://localhost:7071/api/issuers/{id}/rightsissues/{riid}/uploads
+Content-Type: application/octet-stream
+Content-Disposition: attachment; filename="3bUp.csv"
+
+POST http://localhost:7071/api/rightsissue/892B8623-4DA9-4B15-82F1-C411D7C7A4BF/allocation/?guarantee=100
+Content-Type: application/json
+X-API-KEY: 4841c9b5b23545b3bee544ccd31d5eb4
+OriginatingUsername: originuser
+
+
+GET http://localhost:7071/api/issuers/A065B672-9EBB-4F42-B1B3-000B8922808E/rightsissues/892B8623-4DA9-4B15-82F1-C411D7C7A4BF/download
+Content-Type: application/json
+X-API-KEY: 4841c9b5b23545b3bee544ccd31d5eb4
+OriginatingUsername: originuser
+
+post http://localhost:7071/api/entitlements/{id}/elections
+Content-Type: application/json
+
+{
+  "rightsIssueId": "892b8623-4da9-4b15-82f1-c411d7c7a4bf",
+  "entitlementId": "A065B672-9EBB-4F42-B1B3-000B8922808E",
+  "sharesElected": 200,
+  "accountName": "Mr Joe Bloggs",
+  "bsbNumber": "063180",
+  "accountNumber": "111111",
+  "emailAddress": "joe.bloggs@computershare.com.au",
+  "mobileNumber": "0411222333",
+  "abn": "123"
+}
+
+post  http://localhost:7071/api/search/entitlements
+Content-Type: application/json
+
+{
+    "id":"EEE1FEC6-E16D-43C5-A817-973895D48562",
+     "postCode" : "3320",
+    "shareHolderReference": "X9999000751",
+	"recaptchaResponse": "03AOLTBLT2XzdlVg_giTEX_ixlonKWBnwvp5IcB_a97iYYYamgWqcTUaYcWdHT007HRi8QLafisr8kipSWC69Vf0udNuZXfzn8LVB-cX_fKRyea3u5K-pep3U6COCWC_aFhQKeBvvhLj_aoAeLyD5nOLVn58_fL2EgG1Z71m9rS8EHqSrzgxOAGp96FMgl0nJlFQjL35MvCiy5X7EJb6HLz2k_BqtPYhufIEdxTDgA_bigyOxnAdb1IZZ478oREf-RqtrXFnHeAZO-l5pcWZ9aItf1-MONoMQOfYxGv9jMjT935IrUfBFqGdzryQTQ2oX0_8NjfjgGOGFw2TtFeBzfhCL0CcA8fF0GeItwrZMBISgyMjY41RUMzF6cJ5Xv0m4vj36kNLNJZw2Xe_o7flMbxKbgiDptQ7IdvxukKba-0f6fS0j7SE_vGqGNk4tL1vOVM66v6X0Qd-icjMiJVhPyEFADHzT_x-9t83vhSXEP0NtRK9BLXeXzYqS81RUThBJUtwZvQnEh9GYY",
+}
+
+GET {{baseurl}}/api/institutions/DFDF73C4-184B-4C3E-A64D-A57436DD7DDB/rightsissues
+
+###
+
+GET https://api-dev.cpudigitalfoundry.com/api/capitalraising/issuers/EEE1FEC6-E16D-43C5-A817-973895D48562/rightsissues/EEE1FEC6-E16D-43C5-A817-973895D48562/stage
+X-API-KEY: 4841c9b5b23545b3bee544ccd31d5eb4
