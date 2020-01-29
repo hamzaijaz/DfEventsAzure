@@ -1,5 +1,13 @@
 @baseurl = http://localhost:7070
 
+POST http://localhost:7071/api/rsvp/94afe0a5-5f18-4ee8-8b99-cebff51c05a3
+
+###
+
+GET  http://localhost:7071/api/getevent/94afe0a5-5f18-4ee8-8b99-cebff51c05a3
+
+###
+
 GET  http://localhost:7071/api/getevents
 Content-Type: application/json
 
@@ -15,6 +23,12 @@ Content-Type: application/json
   "EventDate": "2019-12-01 00:00:00.000Z",
   "EventCost": "12.12"
 }
+
+###
+
+POST  http://localhost:7071/api/deleteevent/64ff103a-ec8d-464f-96db-9448aca696df
+
+###
 
 POST http://localhost:7071/api/issuers/{id}/rightsissues/{riid}/uploads
 Content-Type: application/octet-stream

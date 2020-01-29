@@ -10,5 +10,9 @@ namespace dfEvents.DataAccess.Repository
     {
         Task AddEvent(EventEntity e);
         Task<List<EventEntity>> GetEvents();
+        Task DeleteEvent(string eventIdentity);
+        Task <EventEntity> GetEvent(string eventIdentity);
+        Task Rsvp(string eventIdentity);
+
     }
 }

@@ -33,5 +33,29 @@ namespace dfEvents.DataAccess.Repository
                 return await db.FetchAsync<EventEntity>("SELECT * FROM dbo.Event");
             }
         }
+
+        public async Task<EventEntity> GetEvent(string eventIdentity)
+        {
+            using (var db = await _dbFactory.CreateConnectionAsync())
+            {
+                return await db.FirstOrDefaultAsync<EventEntity>("SELECT * FROM dbo.Event WHERE EventIdentity = @0", eventIdentity);
+            }
+        }
+
+        public async Task DeleteEvent(string eventIdentity)
+        {
+            using (var db = await _dbFactory.CreateConnectionAsync())
+            {
+                 await db.ExecuteAsync("DELETE FROM dbo.Event WHERE EventIdentity = @0", eventIdentity);
+            }
+        }
+
+        public async Task Rsvp(string eventIdentity)
+        {
+            using (var db = await _dbFactory.CreateConnectionAsync())
+            {
+                await db.ExecuteAsync("UPDATE dbo.Event SET Rsvp = Rsvp + 1 Where EventIdentity = @0", eventIdentity);
+            }
+        }
     }
 }

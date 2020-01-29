@@ -49,9 +49,9 @@ namespace dfEvents
             return new OkObjectResult(e);
         }
 
-        [FunctionName("GetEvents")]
-        public async Task<IActionResult> GetEvents(
-            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "getevents")] HttpRequest req,
+        [FunctionName("GetAllEvents")]
+        public async Task<IActionResult> GetAllEvents(
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "getallevents")] HttpRequest req,
             ILogger log)
         {
             log.LogInformation("C# HTTP trigger function processed a request.");
@@ -59,6 +59,42 @@ namespace dfEvents
             var events = await _eventRepository.GetEvents();
 
             return new OkObjectResult(events);
+        }
+
+        [FunctionName("GetEvent")]
+        public async Task<IActionResult> GetEvent(
+            [HttpTrigger(AuthorizationLevel.Function, "get", Route = "getevent/{eventidentity}")] HttpRequest req, string eventidentity,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger function processed a request.");
+
+            var e = await _eventRepository.GetEvent(eventidentity);
+
+            return new OkObjectResult(e);
+        }
+
+        [FunctionName("DeleteEvent")]
+        public async Task<IActionResult> DeleteEvent(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "deleteevent/{eventidentity}")] HttpRequest req, string eventidentity,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger function processed a request.");
+
+            await _eventRepository.DeleteEvent(eventidentity);
+
+            return new OkObjectResult("Successfully deleted");
+        }
+
+        [FunctionName("Rsvp")]
+        public async Task<IActionResult> Rsvp(
+            [HttpTrigger(AuthorizationLevel.Function, "post", Route = "rsvp/{eventidentity}")] HttpRequest req, string eventidentity,
+            ILogger log)
+        {
+            log.LogInformation("C# HTTP trigger function processed a request.");
+
+            await _eventRepository.Rsvp(eventidentity);
+
+            return new OkObjectResult("Successfully RSVP");
         }
     }
 }
