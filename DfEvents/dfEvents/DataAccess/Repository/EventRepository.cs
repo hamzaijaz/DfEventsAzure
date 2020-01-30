@@ -18,6 +18,7 @@ namespace dfEvents.DataAccess.Repository
             _mapper = mapper;
         }
 
+        #region Event
         public async Task AddEvent(EventEntity e)
         {
             using (var db = await _dbFactory.CreateConnectionAsync())
@@ -55,6 +56,32 @@ namespace dfEvents.DataAccess.Repository
             using (var db = await _dbFactory.CreateConnectionAsync())
             {
                 await db.ExecuteAsync("UPDATE dbo.Event SET Rsvp = Rsvp + 1 Where EventIdentity = @0", eventIdentity);
+            }
+        }
+        #endregion
+
+        //User
+        public async Task AddUser(UserEntity u)
+        {
+            using (var db = await _dbFactory.CreateConnectionAsync())
+            {
+                await db.InsertAsync(u);
+            }
+        }
+
+        public async Task<List<UserEntity>> GetUsers()
+        {
+            using (var db = await _dbFactory.CreateConnectionAsync())
+            {
+                return await db.FetchAsync<UserEntity>("SELECT * FROM dbo.Users");
+            }
+        }
+
+        public async Task<UserEntity> GetUser(string userIdentity)
+        {
+            using (var db = await _dbFactory.CreateConnectionAsync())
+            {
+                return await db.FirstOrDefaultAsync<UserEntity>("SELECT * FROM dbo.Event WHERE UserIdentity = @0", userIdentity);
             }
         }
     }

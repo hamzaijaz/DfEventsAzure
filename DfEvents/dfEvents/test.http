@@ -1,5 +1,16 @@
 @baseurl = http://localhost:7070
 
+POST   http://localhost:7071/api/createuser
+Content-Type: application/json
+
+{
+  "FirstName": "Test name",
+  "LastName": " test name",
+  "EmailAddress": "a@b.com",
+}
+
+###
+
 POST http://localhost:7071/api/rsvp/94afe0a5-5f18-4ee8-8b99-cebff51c05a3
 
 ###
