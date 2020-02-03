@@ -28,11 +28,11 @@ POST   http://localhost:7071/api/createevent
 Content-Type: application/json
 
 {
-  "EventTitle": "Test Event",
-  "EventDescription": " test description",
-  "EventType": "Formal",
+  "EventTitle": "Abida Parveen Concert",
+  "EventDescription": "If you like Classical",
+  "EventType": "Music",
   "EventDate": "2019-12-01 00:00:00.000Z",
-  "EventCost": "12.12"
+  "EventCost": "50.12"
 }
 
 ###
